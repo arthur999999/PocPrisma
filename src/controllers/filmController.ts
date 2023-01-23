@@ -17,8 +17,8 @@ export async function postFilm (req: Request, res: Response) {
         res.sendStatus(201)
 
     } catch (error) {
-        if(error.name === 'ConflictErrorCategory'){
-            res.status(409).send(error.message)
+        if(error.name === 'NotFoundErrorCategory'){
+            res.status(404).send(error.message)
             return
         }
 
@@ -30,3 +30,25 @@ export async function postFilm (req: Request, res: Response) {
         res.status(400).send(error.message)
     }
 }
+
+export async function concluedFilm(req: Request, res: Response){
+
+    const filmId = req.params.id
+
+    try {
+        
+        await filmServices.verifyFilmExists(filmId)
+
+        await filmServices.concluedFilm(filmId)
+
+        res.sendStatus(200)
+
+    } catch (error) {
+        if(error.name === 'NotFoundFilm'){
+            res.status(404).send(error.message)
+            return
+        }
+
+        res.status(400).send(error.message)
+    }
+} 

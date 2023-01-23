@@ -1,4 +1,5 @@
-import { SendFilm } from "../protocols.js";
+import { connection } from "../db/db.js";
+import { Film, SendFilm } from "../protocols.js";
 import { filmRepository } from "../repository/filmRepository.js";
 
 async function verifyCategoryID(id: number) {
@@ -7,7 +8,7 @@ async function verifyCategoryID(id: number) {
     if(!category.rows[0]){
         
         throw {
-            name: 'ConflictErrorCategory',
+            name: 'NotFoundErrorCategory',
             message: 'This catergory not exists'
         }
     }
@@ -30,8 +31,27 @@ async function postCreatFilm(film: SendFilm){
     await filmRepository.creatFilm(film)
 }
 
+async function verifyFilmExists(id: string) {
+    
+    const film = await filmRepository.getFilmId(id)
+
+    if(!film.rows[0]){
+
+        throw {
+            name: 'NotFoundFilm',
+            message: 'This film not exists'
+        }
+    }
+}
+
+async function concluedFilm(id: string) {
+    await filmRepository.updateConclued(id)
+}
+
 export const filmServices = {
     verifyCategoryID,
     verifyNameFilm,
-    postCreatFilm
+    postCreatFilm,
+    verifyFilmExists,
+    concluedFilm
 }
