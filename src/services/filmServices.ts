@@ -1,3 +1,4 @@
+import { SendFilm } from "../protocols.js";
 import { filmRepository } from "../repository/filmRepository.js";
 
 async function verifyCategoryID(id: number) {
@@ -12,6 +13,25 @@ async function verifyCategoryID(id: number) {
     }
 }
 
+async function verifyNameFilm(name: string) {
+    const film = await filmRepository.getFilmName(name)
+
+    if(film.rows[0]){
+
+        throw {
+            name: 'ConflictErrorFilm',
+            message: 'This film already registered'
+        }
+    }
+}
+
+async function postCreatFilm(film: SendFilm){
+
+    await filmRepository.creatFilm(film)
+}
+
 export const filmServices = {
-    verifyCategoryID
+    verifyCategoryID,
+    verifyNameFilm,
+    postCreatFilm
 }

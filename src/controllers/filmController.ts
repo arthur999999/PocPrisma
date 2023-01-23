@@ -10,10 +10,19 @@ export async function postFilm (req: Request, res: Response) {
         
         await filmServices.verifyCategoryID(film.categoryId)
 
-        res.send('foi').status(200)
+        await filmServices.verifyNameFilm(film.name)
+
+        await filmServices.postCreatFilm(film)
+
+        res.sendStatus(201)
 
     } catch (error) {
         if(error.name === 'ConflictErrorCategory'){
+            res.status(409).send(error.message)
+            return
+        }
+
+        if(error.name === 'ConflictErrorFilm'){
             res.status(409).send(error.message)
             return
         }
