@@ -2,15 +2,14 @@
 
 Exists 6 categories: 
 
-#Routes
-
-
 1	"Ação"
 2	"Comédia"
 3	"Romance"
 4	"Aventura"
 5	"Infantil"
 6	"Terror"
+
+#Routes
 
 GET(/films) - List all films
 
