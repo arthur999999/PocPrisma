@@ -82,7 +82,7 @@ export async function listFilms(req: Request, res: Response) {
         
         const films = await filmRepository.getFilms()
 
-        res.status(200).send(films.rows)
+        res.status(200).send(films)
 
     } catch (error) {
 
@@ -102,7 +102,7 @@ export async function listFilmsCategory(req: Request, res: Response) {
 
         const filmsCategory = await filmRepository.getFilmsCategory(id)
 
-        res.send(filmsCategory.rows).status(200)
+        res.send(filmsCategory).status(200)
 
     } catch (error) {
 
