@@ -33,9 +33,9 @@ async function postCreatFilm(film: SendFilm){
 
 async function verifyFilmExists(id: string) {
     
-    const film = await filmRepository.getFilmId(id)
+    const filmss = await filmRepository.getFilmId(id)
 
-    if(!film[0]){
+    if(!filmss){
 
         throw {
             name: 'NotFoundFilm',

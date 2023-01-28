@@ -20,27 +20,63 @@ async function getFilmName (name: string){
 }
 
 async function creatFilm (film: SendFilm){
-    return 
+    return prisma.films.create({
+        data: {
+            name: film.name,
+            conclued: false,
+            image: film.image,
+            categoryId: film.categoryId
+        }
+    })
 }
 
 async function getFilmId (id: string){
-    return 
+    let realId = Number(id)
+    return prisma.films.findUnique({
+        where: {
+            id: realId
+        }
+    })
 }
 
 async function updateConclued(id:string) {
-    return 
+    const newId = Number(id)
+    return prisma.films.update({
+        where: {
+            id: newId,
+        },
+        data: {
+            conclued: true
+        }
+    })
 }
 
 async function deleteFilm(id: string) {
-    return 
+    return prisma.films.delete({
+        where: {
+            id: Number(id)
+        }
+    })
 }
 
 async function getFilms(){
-    return prisma.films.findMany()
+    return prisma.films.findMany({
+        include: {
+            categories: {
+                select: {
+                    name: true
+                }
+            }
+        }
+    })
 }
 
 async function getFilmsCategory(id: number){
-    return 
+    return prisma.films.findMany({
+        where: {
+            categoryId: id
+        }
+    })
 }
 
 export const filmRepository = {
