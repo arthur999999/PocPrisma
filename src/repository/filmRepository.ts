@@ -79,6 +79,21 @@ async function getFilmsCategory(id: number){
     })
 }
 
+async function getActors (id: number) {
+    return prisma.actorfilm.findMany({
+        where: {
+            filmId: id
+        },
+        include: {
+            actors: {
+                select : {
+                    name: true
+                }
+            }
+        }
+    })
+}
+
 export const filmRepository = {
     getCategory,
     getFilmName,
@@ -87,5 +102,6 @@ export const filmRepository = {
     updateConclued,
     deleteFilm,
     getFilms,
-    getFilmsCategory
+    getFilmsCategory,
+    getActors
 }

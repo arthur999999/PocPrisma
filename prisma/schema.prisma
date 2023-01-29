@@ -20,4 +20,19 @@ model films {
   image      String
   categoryId Int
   categories categories @relation(fields: [categoryId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "films_fk0")
+  actorfilm actorfilm[]
+}
+
+model actorfilm {
+  id        Int         @id(map: "actorfilm_pk") @default(autoincrement())
+  filmId    Int
+  films   films       @relation(fields: [filmId], references: [id])
+  actorId   Int
+  actors actors       @relation(fields: [actorId], references: [id])
+}
+
+model actors {
+  id Int @id(map: "actors_pk") @default(autoincrement())
+  name String @unique
+  actorfilm actorfilm[]
 }

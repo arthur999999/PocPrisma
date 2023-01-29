@@ -115,3 +115,29 @@ export async function listFilmsCategory(req: Request, res: Response) {
     }
 
 }
+
+export async function listActorFromFilm( req: Request, res: Response) {
+
+    const id = req.params.filmId
+
+    try {
+        
+        await filmServices.verifyFilmExists(id)
+
+        const realId = Number(id)
+
+        const listActors = await filmRepository.getActors(realId)
+
+        res.send(listActors).status(200)
+
+    } catch (error) {
+        
+        if(error.name === 'NotFoundFilm'){
+            res.status(404).send(error.message)
+            return
+        }
+
+        res.status(400).send(error.message)
+
+    }
+}
