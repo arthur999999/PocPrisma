@@ -15,6 +15,8 @@ GET(/films) - List all films
 
 GET(/films/categoryId/:id) - List all films of this category
 
+GET(/actors/:filmId) - List all actors from a specific film 
+
 POST(/film) - Post a film with this body
 /
   {
