@@ -1,7 +1,7 @@
 import { Router } from "express";
-import { concluedFilm, deleteFilm, listActorFromFilm, listFilms, listFilmsCategory, postFilm } from "../controllers/filmController.js";
-import { validateBody } from "../middlewares/validateBody.js";
-import { filmSchema } from "../schemas/filmSchema.js";
+import { concluedFilm, deleteFilm, listActorFromFilm, listFilms, listFilmsCategory, postFilm } from "../controllers/filmController";
+import { validateBody } from "../middlewares/validateBody";
+import { filmSchema } from "../schemas/filmSchema";
 
 const routers = Router()
 

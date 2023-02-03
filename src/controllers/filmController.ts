@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
-import { SendFilm } from "../protocols.js";
-import { filmRepository } from "../repository/filmRepository.js";
-import { filmServices } from "../services/filmServices.js";
+import { SendFilm } from "../protocols";
+import { filmRepository } from "../repository/filmRepository";
+import { filmServices } from "../services/filmServices";
 
 export async function postFilm (req: Request, res: Response) {
 

@@ -1,6 +1,6 @@
 import express from "express";
 import cors from  "cors";
-import routers from "./routes/routes.js";
+import routers from "./routes/routes";
 
 const app = express()
 
@@ -9,4 +9,6 @@ app.use(express.json())
 
 app.use(routers)
 
-app.listen(4500, ()=> console.log('rodando'))
+app.listen(5000, ()=> console.log('rodando'))
+
+export default app

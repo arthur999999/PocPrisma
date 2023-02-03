@@ -1,4 +1,4 @@
-import prisma from "../src/db/db.js"
+import prisma from "../src/db/db"
 
 async function main() {
 

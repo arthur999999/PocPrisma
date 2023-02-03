@@ -1,6 +1,6 @@
 
-import { Film, SendFilm } from "../protocols.js";
-import { filmRepository } from "../repository/filmRepository.js";
+import { Film, SendFilm } from "../protocols";
+import { filmRepository } from "../repository/filmRepository";
 
 async function verifyCategoryID(id: number) {
     const category = await filmRepository.getCategory(id)

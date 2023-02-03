@@ -1,7 +1,7 @@
 
 import {QueryResult} from "pg"
-import { Category, Film, SendFilm } from "../protocols.js";
-import prisma from "../db/db.js"
+import { Category, Film, SendFilm } from "../protocols";
+import prisma from "../db/db"
 
 async function getCategory (id: number) {
     return prisma.categories.findUnique({
