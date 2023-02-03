@@ -13,8 +13,6 @@ describe('testando concluedfilm',  () => {
 
     const result = await api.put(`/conclued/${id}`)
 
-    console.log(result)
-
     expect(result.status).toBe(200)
 
     })
